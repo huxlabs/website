@@ -1,0 +1,134 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  div {
+    width: 100%;
+    max-width: 700px;
+  } 
+  
+  @media (min-width: 700px) { 
+    p { font-size: 2rem; }
+  }
+}
+
+section {
+  margin: 0 auto;
+  padding-top: 7rem;
+  padding-bottom: 1rem;
+  width: 85%;
+  
+  h1 { font-size: 10vw; }
+  
+  h2 { font-size: 8vw; }
+  
+  p {
+    font-size: 5vw;
+    line-height: 7.5vw;
+  }
+  
+  .title { margin-bottom: 1rem; }
+  
+  .subtitle { margin-bottom: 1rem; }
+  
+  .description {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 2rem;
+    
+    span { font-style: italic; }
+  }
+  
+  .content { margin-bottom: 2rem; }
+  
+  .subcontent { margin-bottom: 2rem; }
+  
+  // LISTS
+  
+  ul {
+    .list-item {
+      margin-bottom: 1rem;
+    
+      .bullet {
+        color: $primary;
+        font-weight: bold;
+      }
+    }
+    
+    &.investments {
+      display: flex;
+      flex-wrap: wrap;
+      
+      li {
+        margin: 1rem;
+        flex-grow: 1;
+        
+        border: 1px solid $primary;
+        height: 150px;
+        width: 200px;
+        
+        @media (min-width: 700px) { 
+          max-width: 200px;
+        }
+      }
+      
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        
+      }
+    }
+    
+    &.domains {
+      li {
+        border: 1px solid $primary;
+        display: inline-block;
+        margin-right: 1rem;
+        padding: 0.5rem;
+      }
+    }
+  }
+  
+  // ANIMATION
+  
+  .title,
+  .subtitle,
+  .description,
+  .content,
+  .subcontent,
+  .list-item {
+    transition: all 0.5s ease-in-out;
+    transform: translateY(50px);
+    opacity: 0;
+  
+    &.fade {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  // BREAKPOINTS
+  
+  @media (min-width: 700px) { 
+    section { width: 50%; }
+    
+    h1 { font-size: 6rem; }
+     
+    h2 { font-size: 4.5rem; }
+     
+    p {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+     
+    .content { margin-bottom: 2rem; }
+  }
+}
+
+
+
+

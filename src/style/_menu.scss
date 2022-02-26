@@ -1,0 +1,53 @@
+.menu {
+  align-items: flex-end;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  justify-content: center;
+  width: 0;
+  transition: 0.4s ease-out;
+  
+  .line {
+    background: $light;
+    display: block;
+    height: 2px;
+    transition: 0.4s ease-out;
+    
+    &:nth-child(1) {
+      transform: translateY(-8px);
+      width: 84%;
+    }
+    
+    &:nth-child(2) {
+      width: 68%;
+    }
+    
+    &:nth-child(3) {
+      transform: translateY(8px);
+      width: 100%;
+    }
+  }
+  
+  &:hover {
+    .line {    
+      &:nth-child(1) { width: 68%; }
+      &:nth-child(2) { width: 100%; }
+      &:nth-child(3) { width: 84%; }
+    }
+  }
+  
+  &.loaded { width: 30px; }
+  
+  &.active {
+    transform: rotate(45deg); 
+  
+    .line:nth-child(2) { width: 100%; }
+
+    .line:nth-child(1),
+    .line:nth-child(3) {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+}
