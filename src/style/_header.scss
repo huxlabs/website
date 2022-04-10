@@ -6,4 +6,15 @@
   padding: 1rem 2rem;
   width: 100%;
   z-index: 2;
+
+  h1 {
+    font-family: 'Meddon', cursive;
+    font-size: 1.2rem;
+    font-weight: 100;
+    overflow: hidden;
+    transition: 0.4s ease-out;
+    width: 0;
+
+    &.loaded { width: 100px; padding-left: 0.5rem; }
+  }
 }
