@@ -528,51 +528,7 @@ var _initiateJsDefault = parcelHelpers.interopDefault(_initiateJs);
 const app = ()=>{
     _initiateJsDefault.default.init();
 };
-app(); //async function App() {
- //  const template = document.createElement('template')
- //  template.innerHTML = `
- //    <div class="container">
- //      ${Header()}
- //      ${await User()}
- //    </div>
- //  `
- //  // Return a new node from template
- //  return template.content.cloneNode(true)
- //}
- //
- //import App from './App';
- //
- //const app = async () => {
- //  document.getElementById('app').appendChild(await App());
- //};
- //// Load app
- //app();
- //let links = document.querySelectorAll('a');
- //
- //if (links) {
- //  links.forEach(link => {
- //    let route = link.getAttribute('href');
- //    
- //    link.onclick = (e) => {
- //      let currentRoute = window.location.pathname;
- //      
- //      e.preventDefault();
- //        
- //      if (route !== currentRoute) {
- //        history.pushState(null, '', `${route}`);
- //      
- //        toggleMenu();
- //        animate('out');
- //    
- //        setTimeout(() => {
- ////          loadView();
- //        }, 1000)
- //      } else {
- //        toggleMenu();
- //      }
- //    }
- //  })
- //}
+app();
 
 },{"./style/main.scss":"6tjlZ","./scripts/initiate.js":"baY8S","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6tjlZ":[function() {},{}],"baY8S":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -679,7 +635,7 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const template = ()=>`
-  <div></div>
+  <h1 id='name'>Huxley</h1>
   <div class='menu' id='menu'>
     <span class='line'></span>
     <span class='line'></span>
@@ -717,52 +673,106 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "loadView", ()=>loadView
 );
 // Views
-var _homeJs = require("../views/Home.js");
-var _homeJsDefault = parcelHelpers.interopDefault(_homeJs);
-var _entrepreneurJs = require("../views/Entrepreneur.js");
-var _entrepreneurJsDefault = parcelHelpers.interopDefault(_entrepreneurJs);
-var _ideasJs = require("../views/Ideas.js");
-var _ideasJsDefault = parcelHelpers.interopDefault(_ideasJs);
-var _investorJs = require("../views/Investor.js");
-var _investorJsDefault = parcelHelpers.interopDefault(_investorJs);
-var _developerJs = require("../views/Developer.js");
-var _developerJsDefault = parcelHelpers.interopDefault(_developerJs);
-var _404Js = require("../views/404.js");
-var _404JsDefault = parcelHelpers.interopDefault(_404Js);
+// import Connect from '../views/Connect.js'
+// import Developer from '../views/Developer.js'
+// import Entrepreneur from '../views/Entrepreneur.js'
+// import Home from '../views/Home.js'
+// import Investor from '../views/Investor.js'
+// import Lost from '../views/404.js'
 // Components
 var _investmentJs = require("../components/investment.js");
 var _investmentJsDefault = parcelHelpers.interopDefault(_investmentJs);
 // Scripts
 var _animationsJs = require("./animations.js");
+var _pageJs = require("./page.js");
+var _pageJsDefault = parcelHelpers.interopDefault(_pageJs);
 async function loadView() {
     const route = window.location.pathname;
     const container = document.querySelector('main');
     switch(route){
         case '/':
-            container.innerHTML = await _homeJsDefault.default();
+            // container.innerHTML = await Home();
+            container.innerHTML = await _pageJsDefault.default({
+                layout: 'hero',
+                view: home
+            });
             break;
         case '/entrepreneur':
-            container.innerHTML = await _entrepreneurJsDefault.default();
+            // container.innerHTML = await Entrepreneur();
+            container.innerHTML = await _pageJsDefault.default({
+                layout: 'standard',
+                view: entrpreneur
+            });
             break;
         case '/investor':
-            container.innerHTML = await _investorJsDefault.default();
+            // container.innerHTML = await Investor();
+            container.innerHTML = await _pageJsDefault.default({
+                layout: 'standard',
+                view: investor
+            });
             loadInvestments();
             break;
         case '/developer':
-            container.innerHTML = await _developerJsDefault.default();
-            break;
-        case '/ideas':
-            container.innerHTML = await _ideasJsDefault.default();
+            // container.innerHTML = await Developer();
+            container.innerHTML = await _pageJsDefault.default({
+                layout: 'standard',
+                view: developer
+            });
             break;
         case '/connect':
-            container.innerHTML = await _ideasJsDefault.default();
+            // container.innerHTML = await Connect();
+            container.innerHTML = await _pageJsDefault.default({
+                layout: 'connect',
+                view: connect
+            });
             break;
         default:
-            container.innerHTML = await _404JsDefault.default();
+            // container.innerHTML = await Lost();
+            container.innerHTML = await _pageJsDefault.default({
+                layout: 'lost',
+                view: lost
+            });
             break;
     }
     _animationsJs.animate('in');
 }
+const home = {
+    title: 'Make epic sh*t.',
+    description: "I'm Chris Huxley, a software developer, investor, and entrepreneur based in D.C."
+};
+const entrpreneur = {
+    title: 'Entrepreneur',
+    description: 'en<span>&#183;</span>tre<span>&#183;</span>pre<span>&#183;</span>neur, <span>noun</span> : someone in the pursuit of opportunity at the expense of an average life.',
+    content: "As an entrepreneur, I spend my time <span class='underline'>dreaming</span>, <span class='underline'>planning</span>, <span class='underline'>building</span>, and <span class='underline'>launching</span> my own ideas through <em>HuxLabs</em>, my personal venture studio. To help bring these ideas to life, I'm always seeking to collaborate with amazing people. If any of these opportunities interest you, let me know.",
+    subtitle: 'Focus Areas',
+    subcontent: 'Below is a curated list of my active investments.',
+    selector: ''
+};
+const investor = {
+    title: 'Investor',
+    description: 'in<span>&#183;</span>ves<span>&#183;</span>tor, <span>noun</span> : one who deploys their capital to help others pursue their dreams.',
+    content: 'Being an investor has a lot of rewards.',
+    subtitle: 'My Portfolio',
+    subcontent: 'Below is a curated list of my active investments.',
+    selector: 'investments'
+};
+const developer = {
+    title: 'Developer',
+    description: 'de<span>&#183;</span>vel<span>&#183;</span>op<span>&#183;</span>er, <span>noun</span> : one who organizes 1s and 0s to bring about a certain result.',
+    content: 'It\'s not about what you make. It\'s about what you make happen. There\'s something so beautiful about bringing an idea to life. What was once a distant thought, a voice in your head, is now tangible. It\'s a gamechanging product, an innovative technology, or a ledgendary movement.',
+    subtitle: '',
+    subcontent: '',
+    selector: ''
+};
+const connect = {
+    title: 'Connect',
+    description: 'con<span>&#183;</span>nect, <span>verb</span> : something we all fail to do enough.',
+    content: 'If you made it this far, you might as well reach out. Even if it\'s just to say hello.'
+};
+const lost = {
+    title: 'You seem to have lost your way.',
+    description: 'Select the menu to get back on track.'
+};
 const investments = [
     {
         name: 'NowRx',
@@ -819,108 +829,7 @@ const loadInvestments = ()=>{
     });
 };
 
-},{"../views/Home.js":"5yZ7T","../views/Entrepreneur.js":"26RRZ","../views/Ideas.js":"8fwXW","../views/Investor.js":"5ryWY","../views/Developer.js":"2njeq","../views/404.js":"hiyek","../components/investment.js":"4LrPc","./animations.js":"6S3X3","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5yZ7T":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const template = ()=>`
-  <section class='home'>
-    <div>
-      <h1 class='title'>Make epic sh*t.</h1>
-      <p class='description'>I'm Chris Huxley, a software developer, investor, and entrepreneur based in D.C.</p>
-    </div>
-  </section>
-`
-;
-exports.default = template;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"26RRZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const template = ()=>`
-  <section>
-    <h2 class='title'>En<span>&#183;</span>tre<span>&#183;</span>pre<span>&#183;</span>neur</h2>
-    <p class='description'><span>noun</span> : one who organizes, manages, and assumes the risk of a business.</p>
-    <p class='content'>As an entrepreneur, I spend my time <span class='underline'>dreaming</span>, <span class='underline'>planning</span>, <span class='underline'>building</span>, and <span class='underline'>launching</span> my own ideas through <em>HuxLabs</em>, my personal venture studio. To help bring these ideas to life, I'm always seeking to collaborate with amazing people. If any of these opportunities interest you, please reach out.</p>
-    <ul>
-      <li class='list-item'><p><span class='bullet'>/ </span>Illustrator for a children's book</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Podcast cover artist</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Graphic designer for digital assets</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Animator for digital assets</p></li>
-    </ul>
-  </section>
-`
-;
-exports.default = template;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8fwXW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const template = ()=>`
-  <section>
-    <h2 class='title'>Ideas.</h2>
-    <p class='description'>As my list of ideas continues to grow, I am always on the lookout for hustlers with an interest in co-founding or leading a startup. If you have an interest in founding a startup or becoming a startup ceo, and you find any of these vague ideas interesting, I'd love to connect.</p>
-    <ul>
-      <li class='list-item'><p><span class='bullet'>/ </span>Co-founding a new type of design studio.</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Innovating a particular automotive operation.</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Innovating the hiring process.</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Fundraising for the culinary arts.</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Hosting a podcast.</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Launching a new type of puzzle company.</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Providing financial education to our youth.</p></li>
-    </ul>
-  </section>
-`
-;
-exports.default = template;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5ryWY":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const template = ()=>`
-  <section>
-    <h2 class='title'>In<span>&#183;</span>ves<span>&#183;</span>tor</h2>
-    <p class='description'><span>noun</span> : one who deploys their capital to help others pursue their dreams.</p>
-    <p class='content'>As my list of ideas continues to grow, I am always on the lookout for hustlers with an interest in co-founding or leading a startup. If you have an interest in founding a startup or becoming a startup ceo, and you find any of these vague ideas interesting, I'd love to connect.</p>
-    <h3 class='subtitle'>My Portfolio</h3>
-    <p class='subcontent'>Below is a curated list of my active investments.</p>
-    <ul id='investments' class='investments'></ul>
-  </section>
-`
-;
-exports.default = template;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2njeq":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const template = ()=>`
-  <section>
-    <h2 class='title'>De<span>&#183;</span>vel<span>&#183;</span>op<span>&#183;</span>er</h2>
-    <p class='description'><span>noun</span> : one who organizes 1s and 0s to bring about a certain result.</p>
-    <p class='content'>It's not about what you make. It's about what you make happen. There's something so beautiful about bringing an idea to life. What was once a distant thought, a voice in your head, is now tangible. It's a gamechanging product, an innovative technology, or a ledgendary movement.</p>
-    <ul>
-      <li class='list-item'><p><span class='bullet'>/ </span>Illustrator for a children's book</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Podcast cover artist</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Graphic designer for digital assets</p></li>
-      <li class='list-item'><p><span class='bullet'>/ </span>Animator for digital assets</p></li>
-    </ul>
-  </section>
-`
-;
-exports.default = template;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hiyek":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const template = ()=>`
-  <section>
-    <h2 class='title'>You seem to have lost your way.</h2>     
-    <p class='description'>Select the menu to get back on track.</p>     
-  </section>
-`
-;
-exports.default = template;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4LrPc":[function(require,module,exports) {
+},{"../components/investment.js":"4LrPc","./animations.js":"6S3X3","./page.js":"cx0pW","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4LrPc":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const Investment = (name, link)=>{
@@ -942,10 +851,13 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "animate", ()=>animate
 );
 function animate(type) {
+    let name = document.getElementById('name');
     let menuIcon = document.getElementById('menu');
     let title = document.querySelector('.title');
+    let subtitle = document.querySelector('.subtitle');
     let description = document.querySelector('.description');
     let content = document.querySelector('.content');
+    let subcontent = document.querySelector('.subcontent');
     let listItems = document.querySelectorAll('.list-item');
     if (type === 'in') {
         setTimeout(()=>{
@@ -953,9 +865,11 @@ function animate(type) {
         }, 100);
         setTimeout(()=>{
             description.classList.toggle('fade');
+            if (content) content.classList.toggle('fade');
         }, 500);
-        if (content) setTimeout(()=>{
-            content.classList.toggle('fade');
+        if (subtitle && subcontent) setTimeout(()=>{
+            subtitle.classList.toggle('fade');
+            subcontent.classList.toggle('fade');
         }, 1000);
         // also on each investment and adds margin bottom
         if (listItems) listItems.forEach((item, index)=>{
@@ -970,20 +884,79 @@ function animate(type) {
                 item.classList.toggle('fade');
             }, index * 100 + 100);
         });
-        if (content) setTimeout(()=>{
-            content.classList.toggle('fade');
+        if (subtitle && subcontent) setTimeout(()=>{
+            subtitle.classList.toggle('fade');
+            subcontent.classList.toggle('fade');
         }, 100);
+        setTimeout(()=>{
+            if (content) content.classList.toggle('fade');
+        }, 150);
         setTimeout(()=>{
             description.classList.toggle('fade');
         }, 200);
         setTimeout(()=>{
             title.classList.toggle('fade');
-        }, 500);
+        }, 250);
     }
     setTimeout(()=>{
+        name.classList.toggle('loaded');
         menuIcon.classList.toggle('loaded');
     }, 700);
 }
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cx0pW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const Page = ({ layout , view  })=>{
+    switch(layout){
+        case 'hero':
+            return templateOne(view);
+        case 'standard':
+            return templateTwo(view);
+        case 'connect':
+            return templateThree(view);
+        default:
+            return templateFour(view);
+    }
+};
+// HERO
+let templateOne = (view)=>`
+  <section class='home'>
+    <h2 class='title'>${view.title}</h2>
+    <p class='description'>${view.description}</p>
+  </section>
+`
+;
+// MAIN
+let templateTwo = (view)=>`
+  <section>
+    <h2 class='title'>${view.title}</h2>
+    <p class='description'>${view.description}</p>
+    <p class='content'>${view.content}</p>
+    <h3 class='subtitle'>${view.subtitle}</h3>
+    <p class='subcontent'>${view.subcontent}</p>
+    <ul id='${view.selector}' class='${view.selector}'></ul>
+  </section>
+`
+;
+// CONNECT
+let templateThree = (view)=>`
+  <section>
+    <h2 class='title'>${view.title}</h2>
+    <p class='description'>${view.description}</p>
+    <p class='content'>${view.content}</p>
+  </section>
+`
+;
+// LOST
+let templateFour = (view)=>`
+  <section>
+    <h2 class='title'>${view.title}</h2>
+    <p class='description'>${view.description}</p>
+  </section>
+`
+;
+exports.default = Page;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fzcL3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
