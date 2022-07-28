@@ -27,7 +27,7 @@ const initiateLoader = async () => {
   });
 
   loader.addEventListener('transitionend', async () => {
-    await loader.remove();   
+    await loader.remove();
     loadView();
   });
 }
@@ -39,26 +39,30 @@ const initiateMenu = async () => {
 
 const initiateNav = async () => {
   document.getElementById('nav').innerHTML = await Nav();
-   
+
   let links = document.querySelectorAll('a');
-    
+
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       let desiredRoute = link.getAttribute('href');
       let currentRoute = window.location.pathname;
-          
+
       e.preventDefault()
-          
+
       if (desiredRoute !== currentRoute) {
-        history.pushState(null, '', `${desiredRoute}`);     
+        history.pushState(null, '', `${desiredRoute}`);
         toggleMenu();
         animate('out');
         setTimeout(() => { loadView(); }, 1000)
       }
-      
       else toggleMenu();
-    })  
+    })
   })
+  // Handle back and forward navigation
+  window.onpopstate = () => {
+    animate('out');
+    setTimeout(() => { loadView(); }, 1000)
+  };
 }
 
 export default initiateApp;
