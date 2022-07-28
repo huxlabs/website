@@ -585,6 +585,13 @@ const initiateNav = async ()=>{
             } else _menuJs.toggleMenu();
         });
     });
+    // Handle back and forward navigation
+    window.onpopstate = ()=>{
+        _animationsJs.animate('out');
+        setTimeout(()=>{
+            _routerJs.loadView();
+        }, 1000);
+    };
 };
 exports.default = initiateApp;
 
@@ -672,17 +679,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "loadView", ()=>loadView
 );
-// Views
-// import Connect from '../views/Connect.js'
-// import Developer from '../views/Developer.js'
-// import Entrepreneur from '../views/Entrepreneur.js'
-// import Home from '../views/Home.js'
-// import Investor from '../views/Investor.js'
-// import Lost from '../views/404.js'
-// Components
-var _investmentJs = require("../components/investment.js");
-var _investmentJsDefault = parcelHelpers.interopDefault(_investmentJs);
-// Scripts
+var _viewsJs = require("./views.js");
+var _viewsJsDefault = parcelHelpers.interopDefault(_viewsJs);
 var _animationsJs = require("./animations.js");
 var _pageJs = require("./page.js");
 var _pageJsDefault = parcelHelpers.interopDefault(_pageJs);
@@ -691,145 +689,163 @@ async function loadView() {
     const container = document.querySelector('main');
     switch(route){
         case '/':
-            // container.innerHTML = await Home();
             container.innerHTML = await _pageJsDefault.default({
                 layout: 'hero',
-                view: home
+                view: _viewsJsDefault.default.home
             });
             break;
         case '/entrepreneur':
-            // container.innerHTML = await Entrepreneur();
             container.innerHTML = await _pageJsDefault.default({
                 layout: 'standard',
-                view: entrpreneur
+                view: _viewsJsDefault.default.entrpreneur
             });
+            _viewsJsDefault.default.entrpreneur.loadIdeas();
             break;
         case '/investor':
-            // container.innerHTML = await Investor();
             container.innerHTML = await _pageJsDefault.default({
                 layout: 'standard',
-                view: investor
+                view: _viewsJsDefault.default.investor
             });
-            loadInvestments();
+            _viewsJsDefault.default.investor.loadInvestments();
             break;
         case '/developer':
-            // container.innerHTML = await Developer();
             container.innerHTML = await _pageJsDefault.default({
                 layout: 'standard',
-                view: developer
+                view: _viewsJsDefault.default.developer
             });
+            _viewsJsDefault.default.developer.loadDomainNames();
             break;
         case '/connect':
-            // container.innerHTML = await Connect();
             container.innerHTML = await _pageJsDefault.default({
                 layout: 'connect',
-                view: connect
+                view: _viewsJsDefault.default.connect
             });
             break;
         default:
-            // container.innerHTML = await Lost();
             container.innerHTML = await _pageJsDefault.default({
                 layout: 'lost',
-                view: lost
+                view: _viewsJsDefault.default.lost
             });
             break;
     }
     _animationsJs.animate('in');
 }
-const home = {
-    title: 'Make epic sh*t.',
-    description: "I'm Chris Huxley, a software developer, investor, and entrepreneur based in D.C."
-};
-const entrpreneur = {
-    title: 'Entrepreneur',
-    description: 'en<span>&#183;</span>tre<span>&#183;</span>pre<span>&#183;</span>neur, <span>noun</span> : someone in the pursuit of opportunity at the expense of an average life.',
-    content: "As an entrepreneur, I spend my time <span class='underline'>dreaming</span>, <span class='underline'>planning</span>, <span class='underline'>building</span>, and <span class='underline'>launching</span> my own ideas through <em>HuxLabs</em>, my personal venture studio. To help bring these ideas to life, I'm always seeking to collaborate with amazing people. If any of these opportunities interest you, let me know.",
-    subtitle: 'Focus Areas',
-    subcontent: 'Below is a curated list of my active investments.',
-    selector: ''
-};
-const investor = {
-    title: 'Investor',
-    description: 'in<span>&#183;</span>ves<span>&#183;</span>tor, <span>noun</span> : one who deploys their capital to help others pursue their dreams.',
-    content: 'Being an investor has a lot of rewards.',
-    subtitle: 'My Portfolio',
-    subcontent: 'Below is a curated list of my active investments.',
-    selector: 'investments'
-};
-const developer = {
-    title: 'Developer',
-    description: 'de<span>&#183;</span>vel<span>&#183;</span>op<span>&#183;</span>er, <span>noun</span> : one who organizes 1s and 0s to bring about a certain result.',
-    content: 'It\'s not about what you make. It\'s about what you make happen. There\'s something so beautiful about bringing an idea to life. What was once a distant thought, a voice in your head, is now tangible. It\'s a gamechanging product, an innovative technology, or a ledgendary movement.',
-    subtitle: '',
-    subcontent: '',
-    selector: ''
-};
-const connect = {
-    title: 'Connect',
-    description: 'con<span>&#183;</span>nect, <span>verb</span> : something we all fail to do enough.',
-    content: 'If you made it this far, you might as well reach out. Even if it\'s just to say hello.'
-};
-const lost = {
-    title: 'You seem to have lost your way.',
-    description: 'Select the menu to get back on track.'
-};
-const investments = [
-    {
-        name: 'NowRx',
-        link: 'https://nowrx.com/'
-    },
-    {
-        name: 'Miso Robotics',
-        link: 'https://misorobotics.com'
-    },
-    {
-        name: 'Winc',
-        link: 'https://www.winc.com/'
-    },
-    {
-        name: 'Ethereum',
-        link: 'https://ethereum.org/en/'
-    },
-    {
-        name: 'Amp',
-        link: 'https://amptoken.org/'
-    },
-    {
-        name: 'NowRx',
-        link: 'https://nowrx.com/'
-    },
-    {
-        name: 'Miso Robotics',
-        link: 'https://misorobotics.com'
-    },
-    {
-        name: 'Winc',
-        link: 'https://www.winc.com/'
-    },
-    {
-        name: 'Ethereum',
-        link: 'https://ethereum.org/en/'
-    },
-    {
-        name: 'Amp',
-        link: 'https://amptoken.org/'
-    },
-    {
-        name: 'Ethereum',
-        link: 'https://ethereum.org/en/'
-    },
-    {
-        name: 'Amp',
-        link: 'https://amptoken.org/'
-    }
-];
-const loadInvestments = ()=>{
-    investments.forEach((investment)=>{
-        document.querySelector('#investments').appendChild(_investmentJsDefault.default(investment.name, investment.link));
-    });
-};
 
-},{"../components/investment.js":"4LrPc","./animations.js":"6S3X3","./page.js":"cx0pW","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4LrPc":[function(require,module,exports) {
+},{"./views.js":"9eQAB","./animations.js":"6S3X3","./page.js":"cx0pW","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9eQAB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _domainJs = require("../components/domain.js");
+var _domainJsDefault = parcelHelpers.interopDefault(_domainJs);
+var _investmentJs = require("../components/investment.js");
+var _investmentJsDefault = parcelHelpers.interopDefault(_investmentJs);
+var _itemJs = require("../components/item.js");
+var _itemJsDefault = parcelHelpers.interopDefault(_itemJs);
+const views = {
+    home: {
+        title: "Make epic sh<span class='accent'>*</span>t.",
+        description: "I'm Chris Huxley, a software developer, investor, and entrepreneur based in D.C."
+    },
+    entrpreneur: {
+        title: 'Entrepreneur',
+        description: 'en<span>&#183;</span>tre<span>&#183;</span>pre<span>&#183;</span>neur, <span>noun</span> : a person in the pursuit of opportunity at the expense of an average life.',
+        content: "As an entrepreneur, I spend my time <span class='underline'>dreaming</span>, <span class='underline'>planning</span>, <span class='underline'>building</span>, and <span class='underline'>launching</span> my own ideas through <em>Huxley Studios</em>, my personal venture studio. To help bring these ideas to life, I'm always seeking to collaborate with amazing people.",
+        subtitle: 'Collaboration Opportunities',
+        subcontent: 'If any of the collaboration opportunities below are of interest, let\'s connect.',
+        selector: 'ideas',
+        ideas: [
+            'Illustrating a children\'s book',
+            'Designing podcast cover art',
+            'Creating animations',
+            'Co-founding a new type of design studio',
+            'Innovating a particular automotive operation',
+            'Innovating the hiring process',
+            'Fundraising for the culinary arts',
+            'Co-hosting a podcast',
+            'Launching a new type of puzzle company'
+        ],
+        loadIdeas: function() {
+            this.ideas.forEach((idea)=>{
+                document.querySelector('#ideas').appendChild(_itemJsDefault.default(idea));
+            });
+        }
+    },
+    investor: {
+        title: 'Investor',
+        description: 'in<span>&#183;</span>ves<span>&#183;</span>tor, <span>noun</span> : a person who deploys their capital to help others pursue their dreams.',
+        content: 'Being an investor has a lot of rewards.',
+        subtitle: 'My Portfolio',
+        subcontent: 'Below is a curated list of my active investments.',
+        selector: 'investments',
+        investments: [
+            {
+                name: 'NowRx',
+                link: 'https://nowrx.com/'
+            },
+            {
+                name: 'Miso Robotics',
+                link: 'https://misorobotics.com'
+            },
+            {
+                name: 'Winc',
+                link: 'https://www.winc.com/'
+            }
+        ],
+        loadInvestments: function() {
+            this.investments.forEach((investment)=>{
+                document.querySelector('#investments').appendChild(_investmentJsDefault.default(investment.name, investment.link));
+            });
+        }
+    },
+    developer: {
+        title: 'Developer',
+        description: 'de<span>&#183;</span>vel<span>&#183;</span>op<span>&#183;</span>er, <span>noun</span> : a person who arranges 1s and 0s in a particular way that creates value in the world.',
+        content: 'It\'s not about what you make. It\'s about what you make happen. There\'s something so beautiful about bringing an idea to life. What was once a distant thought, a voice in your head, is now tangible. It\'s a gamechanging product, an innovative technology, or a ledgendary movement.',
+        subtitle: 'Domain Names',
+        subcontent: 'Below is a curated list of domains I own. If any of them inspire an idea, let\'s connect.',
+        selector: 'domains',
+        domainNames: [
+            'campuscreatives.com',
+            'riddlemethat.org',
+            'netwerking.co',
+            'something2believe.in',
+            'somethingtobelieve.in',
+            'toldby.us',
+            'undergroundstudios.org',
+            'valorpublishing.com'
+        ],
+        loadDomainNames: function() {
+            this.domainNames.forEach((domain)=>{
+                document.querySelector('#domains').appendChild(_domainJsDefault.default(domain));
+            });
+        }
+    },
+    connect: {
+        title: 'Connect',
+        description: 'con<span>&#183;</span>nect, <span>verb</span> : something we all fail to do enough.',
+        content: 'If you made it this far, you might as well reach out. Even if it\'s just to say hello.'
+    },
+    lost: {
+        title: 'You seem to have lost your way.',
+        description: 'Select the menu to get back on track.'
+    }
+};
+exports.default = views;
+
+},{"../components/domain.js":"eydxi","../components/investment.js":"4LrPc","../components/item.js":"hmniZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eydxi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const Domain = (domain)=>{
+    const template = document.createElement('template');
+    template.innerHTML = `
+    <li class='list-item'>
+      ${domain}
+    </li>
+  `;
+    return template.content.cloneNode(true);
+};
+exports.default = Domain;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4LrPc":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const Investment = (name, link)=>{
@@ -845,6 +861,21 @@ const Investment = (name, link)=>{
 };
 exports.default = Investment;
 
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hmniZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const Item = (item)=>{
+    const template = document.createElement('template');
+    template.innerHTML = `
+    <li class='list-item'>
+      <span class='bullet'>/ </span>
+      ${item}
+    </li>
+  `;
+    return template.content.cloneNode(true);
+};
+exports.default = Item;
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6S3X3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -859,12 +890,14 @@ function animate(type) {
     let content = document.querySelector('.content');
     let subcontent = document.querySelector('.subcontent');
     let listItems = document.querySelectorAll('.list-item');
+    let line = document.querySelector('hr');
     if (type === 'in') {
         setTimeout(()=>{
             title.classList.toggle('fade');
         }, 100);
         setTimeout(()=>{
             description.classList.toggle('fade');
+            if (line) line.classList.toggle('fade');
             if (content) content.classList.toggle('fade');
         }, 500);
         if (subtitle && subcontent) setTimeout(()=>{
@@ -875,7 +908,7 @@ function animate(type) {
         if (listItems) listItems.forEach((item, index)=>{
             setTimeout(()=>{
                 item.classList.toggle('fade');
-            }, index * 200 + 1500);
+            }, index * 200 + 1100);
         });
     }
     if (type === 'out') {
@@ -892,6 +925,7 @@ function animate(type) {
             if (content) content.classList.toggle('fade');
         }, 150);
         setTimeout(()=>{
+            if (line) line.classList.toggle('fade');
             description.classList.toggle('fade');
         }, 200);
         setTimeout(()=>{
@@ -932,6 +966,7 @@ let templateTwo = (view)=>`
   <section>
     <h2 class='title'>${view.title}</h2>
     <p class='description'>${view.description}</p>
+    <hr>
     <p class='content'>${view.content}</p>
     <h3 class='subtitle'>${view.subtitle}</h3>
     <p class='subcontent'>${view.subcontent}</p>
@@ -966,7 +1001,7 @@ parcelHelpers.export(exports, "toggleMenu", ()=>toggleMenu
 function toggleMenu() {
     const menuIcon = document.getElementById('menu');
     const navView = document.getElementById('nav');
-    var navLinks = document.querySelectorAll('.link');
+    const navLinks = document.querySelectorAll('.link');
     menuIcon.classList.toggle('active');
     navView.classList.toggle('active');
     navLinks.forEach((link, index)=>{
