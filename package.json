@@ -1,18 +1,18 @@
 {
   "name": "new-site",
   "version": "1.0.0",
-  "description": "",
+  "description": "Chris Huxley is a software developer, writer, investor, and founder.",
   "main": "index.js",
   "scripts": {
-    "dev": "rm -rf ./development && rm -rf ./.parcel-cache && parcel public/index.html --dist-dir development --port 3000",
+    "serve": "rm -rf ./development && rm -rf ./.parcel-cache && parcel public/index.html --dist-dir development --port 3000",
     "build": "parcel public/index.html"
   },
-  "author": "",
+  "author": "Chris Huxley",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.2.0",
     "@parcel/transformer-webmanifest": "^2.2.0",
-    "parcel": "^2.2.0",
+    "parcel": "^2.8.3",
     "sass": "^1.48.0"
   }
 }
