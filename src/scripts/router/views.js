@@ -1,6 +1,6 @@
-import Domain from '../components/domain.js'
-import Investment from '../components/investment.js'
-import Item from '../components/item.js'
+import Domain from '../../components/domain.js'
+import Investment from '../../components/investment.js'
+import Item from '../../components/item.js'
 
 const views = {
   home: {

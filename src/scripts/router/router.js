@@ -1,10 +1,13 @@
 import views from './views.js'
-import { animate } from './animations.js'
-import Page from './page.js'
+import { animate } from '../animations.js'
+import Page from '../page.js'
 
 export async function loadView() {
   const route = window.location.pathname;
   const container = document.querySelector('main');
+
+  console.log(route)
+
 
   switch (route) {
     case '/':
