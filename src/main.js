@@ -1,18 +1,16 @@
-// Styles
-import './style/main.scss'
+import './assets/styles/main.scss';
+import createRouter from './router/router';
+import handleLoader from './services/handleLoader.service.js';
+import renderHeader from './services/renderHeader.service.js';
+import renderNav from './services/renderNav.service.js';
 
-// Services
-import handleLoader from './scripts/services/handleLoader.service.js'
-import displayHeader from './scripts/services/displayHeader.service.js';
-import initiateNav from './scripts/services/initiateNav.service.js';
-
-import { loadView } from './scripts/router/router';
-
-async function createApp() {
-  await handleLoader();
-  await displayHeader();
-  initiateNav();
-  loadView();
+const createApp = async () => {
+  await Promise.all([
+    handleLoader(),
+    renderHeader(),
+    renderNav(),
+  ]);
+  await createRouter();
 }
 
-createApp()
+document.addEventListener('DOMContentLoaded', createApp);

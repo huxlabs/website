@@ -1,4 +1,4 @@
-export function animate(type) {
+export default function animate(type) {
   let name = document.getElementById('name');
   let menuIcon = document.getElementById('menu');
   let title = document.querySelector('.title');
