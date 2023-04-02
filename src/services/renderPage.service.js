@@ -35,7 +35,7 @@ let templateThree = (view) => `
     <p class='description'>${view.description}</p>
     <hr>
     <p class='content'>${view.content}</p>
-    <form id='contact-form' method="POST" action="">
+    <form id='contact-form'>
       <input type="text" name="_honey" style="display:none">
       <input type="text" name="name" id="name" placeholder="Name" required>
       <input type="email" name="email" id="email" placeholder="Email" required>
