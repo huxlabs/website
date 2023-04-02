@@ -716,11 +716,8 @@
                   layout: "connect",
                   view: (0, _connectJsDefault.default)
               });
-              const form = document.getElementById("my-form");
-              if (form) {
-                  console.log("yes");
-                  form.addEventListener("submit", (0, _handleSubmitServiceJsDefault.default));
-              }
+              const form = document.getElementById("contact-form");
+              if (form) form.addEventListener("submit", (0, _handleSubmitServiceJsDefault.default));
               break;
           default:
               container.innerHTML = await (0, _renderPageServiceJsDefault.default)({
