@@ -49,9 +49,8 @@ export default async function loadView() {
     case '/connect':
     container.innerHTML = await renderPage({ layout: 'connect', view: connect });
 
-    const form = document.getElementById('my-form');
+    const form = document.getElementById('contact-form');
     if (form) {
-      console.log('yes')
       form.addEventListener('submit', handleSubmit);
     }
     break;
