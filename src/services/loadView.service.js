@@ -33,9 +33,9 @@ export default async function loadView() {
     case '/investor':
     container.innerHTML = await renderPage({ layout: 'standard', view: investor });
 
-    investor.investments.forEach(investment => {
-      document.querySelector('#investments').appendChild(Investment(investment.name, investment.link))
-    })
+    // investor.investments.forEach(investment => {
+    //   document.querySelector('#investments').appendChild(Investment(investment.name, investment.link))
+    // })
     break;
 
     case '/developer':

@@ -1,4 +1,4 @@
-import Loader from '../components/loader.js';
+import Loader from '../components/TheLoader.js';
 
 export default async function handleLoader() {
   addLoader();
