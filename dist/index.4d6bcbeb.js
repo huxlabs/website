@@ -701,9 +701,6 @@ async function loadView() {
                 layout: "standard",
                 view: (0, _investorJsDefault.default)
             });
-            (0, _investorJsDefault.default).investments.forEach((investment)=>{
-                document.querySelector("#investments").appendChild((0, _investmentJsDefault.default)(investment.name, investment.link));
-            });
             break;
         case "/developer":
             container.innerHTML = await (0, _renderPageServiceJsDefault.default)({
@@ -826,7 +823,7 @@ parcelHelpers.defineInteropFlag(exports);
 const entrepreneur = {
     title: "Entrepreneur",
     description: "en<span>&#183;</span>tre<span>&#183;</span>pre<span>&#183;</span>neur, <span>noun</span> : a person in the pursuit of opportunity at the expense of an average life.",
-    content: "As an entrepreneur, I spend my time <span class='underline'>dreaming</span>, <span class='underline'>planning</span>, <span class='underline'>building</span>, and <span class='underline'>launching</span> my own ideas through <em>Huxley Studios</em>, my personal venture studio. To help bring these ideas to life, I'm always seeking to collaborate with amazing people.",
+    content: "As an entrepreneur, I spend my time dreaming, planning, building, and launching my own ideas through Huxley Studios, my personal venture studio. To help bring these ideas to life, I'm always seeking to collaborate with amazing people.",
     subtitle: "Collaboration Opportunities",
     subcontent: "If any of the collaboration opportunities below are of interest, let's connect.",
     selector: "ideas",
@@ -852,22 +849,7 @@ const investor = {
     description: "in<span>&#183;</span>ves<span>&#183;</span>tor, <span>noun</span> : a person who deploys their capital to help others pursue their dreams.",
     content: "Being an investor has a lot of rewards.",
     subtitle: "My Portfolio",
-    subcontent: "Below is a curated list of my active investments.",
-    selector: "investments",
-    investments: [
-        {
-            name: "NowRx",
-            link: "https://nowrx.com/"
-        },
-        {
-            name: "Miso Robotics",
-            link: "https://misorobotics.com"
-        },
-        {
-            name: "Winc",
-            link: "https://www.winc.com/"
-        }
-    ]
+    subcontent: "Coming soon."
 };
 exports.default = investor;
 
